@@ -1,11 +1,12 @@
 import { render, screen } from "@testing-library/react";
-import App from "./App";
+import Navbar from "./Navbar";
+import NavItem from "./component/navItem";
 import { BrowserRouter as Router } from "react-router-dom";
 
-test("renders learn react link", () => {
+test("navbar test", () => {
   render(
     <Router>
-      <App />
+      <Navbar />
     </Router>
   );
   screen.debug();

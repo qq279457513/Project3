@@ -1,0 +1,31 @@
+.title {
+  display: flex;
+  justify-content: center;
+}
+#profileContainer {
+  display: flex;
+  justify-content: space-around;
+
+  #nameField {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 30px;
+  }
+
+  #updateField {
+    display: flex;
+    .form-control {
+      margin: auto;
+      padding: 0;
+      width: 50%;
+      height: 40px;
+      vertical-align: middle;
+    }
+    .btn-secondary {
+      padding: 0;
+      margin: auto;
+      height: 40px;
+    }
+  }
+}
