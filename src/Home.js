@@ -1,8 +1,4 @@
-import React, { useRef } from "react";
-import InputText from "./component/inputText";
-import PostButton from "./component/postButton";
-import { firestore, addBook } from "./firebase";
-import { addDoc, collection } from "@firebase/firestore";
+import React from "react";
 import Products from "./component/products";
 import Carousel from "react-bootstrap/Carousel";
 

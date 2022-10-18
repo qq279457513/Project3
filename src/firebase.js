@@ -3,30 +3,22 @@ import authContext from "./authContext";
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
-  signInWithPopup,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   signOut,
   onAuthStateChanged,
-  updateCurrentUser,
 } from "firebase/auth";
 import {
   getFirestore,
-  query,
   getDocs,
   collection,
-  where,
-  addDoc,
   setDoc,
   doc,
-  onSnapshot,
   getDoc,
   updateDoc,
-  deleteField,
   deleteDoc,
 } from "firebase/firestore";
-import Products from "./component/products";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAvidXxiQkKWFPYXi_FfEQqW8ipz7zcir0",
@@ -48,7 +40,7 @@ export var userRef = null;
 // Initialize data from collection book
 getDocs(colRef).then((snapshot) => {
   snapshot.docs.forEach((doc1) => {
-    if (doc1.data().pid == 0) {
+    if (doc1.data().pid === 0) {
       authContext._currentValue.invoiceID = doc1.data().invoice;
     } else {
       authContext._currentValue.allBooks.push({ ...doc1.data() });
@@ -75,7 +67,7 @@ export function initUserState() {
           authContext._currentValue.cId = snapshot.data().cartId;
         });
         let ref_c = collection(firestore, `users/${user.uid}/cart`);
-        alert("InitUser");
+      
         setCart(ref_c);
         let ref_h = collection(firestore, `users/${user.uid}/history`);
         setOrderHistory(ref_h);
@@ -167,7 +159,6 @@ export function addBook(data) {
       price: data.price,
       url: data.url,
     });
-    alert("add a book");
   } catch (err) {
     alert(err.message);
   }
@@ -175,11 +166,10 @@ export function addBook(data) {
 
 //loading cart collection
 export function setCart(ref) {
-  alert("setCart");
   authContext._currentValue.cart = [];
   getDocs(ref).then((snapshot) => {
     snapshot.docs.forEach((doc1) => {
-      if (doc1.data().pid != 0)
+      if (doc1.data().pid !== 0)
         authContext._currentValue.cart.push({ ...doc1.data() });
     });
     authContext._currentValue.cart = _.sortBy(authContext._currentValue.cart, [
@@ -193,7 +183,7 @@ export function setOrderHistory(ref) {
   authContext._currentValue.orderHistory = [];
   getDocs(ref).then((snapshot) => {
     snapshot.docs.forEach((doc) => {
-      if (doc.data().date != "0") {
+      if (doc.data().date !== "0") {
         authContext._currentValue.orderHistory.push({ ...doc.data() });
       }
     });
@@ -249,7 +239,7 @@ export function updateUser(data) {
   updateDoc(userRef, data)
     .then((userRef) => {
       authContext._currentValue.name = data.name;
-      alert("cartId has been updated.");
+     
     })
     .catch((error) => {
       console.log(error);
@@ -289,7 +279,6 @@ export async function deleteCart(docId) {
   );
   await deleteDoc(path)
     .then(() => {
-      alert("Item has been removed from Cart.");
     })
     .catch((error) => {
       console.log(error);

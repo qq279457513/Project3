@@ -4,9 +4,8 @@ import {
   logInWithEmailAndPassword,
   initUser,
 } from "../firebase";
-import authContext from "../authContext";
 
-export default class Modal extends React.Component {
+export default class Modal extends Component {
   state = {
     id: "",
     pw: "",
@@ -16,7 +15,7 @@ export default class Modal extends React.Component {
     if (!this.props.show) {
       return null;
     }
-    if (this.props.name == "signup") {
+    if (this.props.name === "signup") {
       return (
         <React.Fragment>
           <div id="myModal" className="myModal">
@@ -81,7 +80,7 @@ export default class Modal extends React.Component {
           </div>
         </React.Fragment>
       );
-    } else if (this.props.name == "login") {
+    } else if (this.props.name === "login") {
       return (
         <React.Fragment>
           <div id="myModal" className="myModal">
@@ -159,8 +158,8 @@ export default class Modal extends React.Component {
   };
 // Return if the repeate password match input password
   comparePassword(str1, str2) {
-    if (str1 != str2) alert("Repeat password doesn't match your Password");
-    return str1 == str2;
+    if (str1 !== str2) alert("Repeat password doesn't match your Password");
+    return str1 === str2;
   }
 
   handleLogIn = (event) => {

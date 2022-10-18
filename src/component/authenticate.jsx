@@ -28,7 +28,7 @@ class Authenticate extends Component {
         }
       });
     }
-    if (this.state.test == 3) {
+    if (this.state.test === 3) {
       return (
         <React.Fragment>
           <li>

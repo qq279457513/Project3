@@ -80,7 +80,7 @@ class Cart extends Component {
                       onClick={this.handleRemove}
                       value={data.cId}
                     >
-                      <BsFillTrashFill size="30px"/>
+                      <BsFillTrashFill disabled={true} size="30px" />
                     </button>
                   </div>
                 </div>
@@ -109,7 +109,7 @@ class Cart extends Component {
     );
   }
   handleRemove = (e) => {
-    deleteCart(e.target.value);
+    deleteCart(e.target.valueAsNumber);
     _.remove(authContext._currentValue.cart, function (data) {
       return data.cId == e.target.value;
     });

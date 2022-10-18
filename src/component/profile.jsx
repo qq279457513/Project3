@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import authContext from "../authContext";
-import { auth, firestore, updateUser, userRef } from "../firebase";
+import { auth, firestore, updateUser } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { getDoc, doc } from "firebase/firestore";
-import _ from "lodash";
+
 class Profile extends Component {
   state = {
     email: authContext._currentValue.email,
@@ -27,12 +27,12 @@ class Profile extends Component {
     });
   };
   updateState() {
-    if (this.state.isLogin == 0 && authContext._currentValue.test == 3) {
+    if (this.state.isLogin === 0 && authContext._currentValue.test === 3) {
       this.setState({ isLogin: 1 });
     }
   }
   render() {
-    if (this.state.isLogin == 1) {
+    if (this.state.isLogin === 1) {
       onAuthStateChanged(auth, (user) => {
         if (user) {
           let ref = doc(firestore, "users", user.uid);
@@ -47,7 +47,7 @@ class Profile extends Component {
         }
       });
     }
-    if (this.state.isLogin == 2) {
+    if (this.state.isLogin === 2) {
       return (
         <>
           <h1 className="title">My Profile</h1>

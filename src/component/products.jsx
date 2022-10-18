@@ -1,10 +1,7 @@
 import React, { Component } from "react";
-import { getBooks } from "../firebase";
 import authContext from "../authContext";
 import { colRef } from "../firebase";
 import { getDocs } from "firebase/firestore";
-import { initializeApp } from "firebase/app";
-import { connectFirestoreEmulator } from "firebase/firestore";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { addBookforUser } from "../firebase";
@@ -35,13 +32,13 @@ class Products extends Component {
     });
   };
   updateBooks() {
-    if (authContext._currentValue.init == 0 && this.state.init != 2) {
+    if (authContext._currentValue.init === 0 && this.state.init !== 2) {
       authContext._currentValue.init = 2;
       this.setState({ init: 2 });
     }
   }
   render() {
-    if (this.state.init == 1) {
+    if (this.state.init === 1) {
       getDocs(colRef).then((snapshot) => {
         this.setState({
           books: authContext._currentValue.allBooks,
@@ -51,7 +48,7 @@ class Products extends Component {
         });
       });
     }
-    if (this.state.init == 2) {
+    if (this.state.init === 2) {
       let array = this.state.books;
       return (
         <React.Fragment>
